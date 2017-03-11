@@ -19,8 +19,8 @@ namespace Connect4
         public Player p2 = new Player();
         public Boolean win = false;
         public int movecount = 0;
-        public int exploreopportunity = 1;
-        public int blockoppurtunity = 40;
+        public int exploreopportunity = 10;
+        public int blockoppurtunity = 500;
         public int winopportunity = 30;
 
         public NewGameComputerVSHuman()
@@ -500,7 +500,14 @@ namespace Connect4
                         // score = score - loseforkscore(row + 1, column, player) + winscore(row, column, player);
                         if (row < 5)
                         {
-                            score = score - threatscore(row + 1, column, player) - winthreatscore(row + 1, column, player) + threatscore(row, column, player) + winscore(row, column, player) + losingfork(row, column, player) + winningfork(row, column, player);
+                            if(threatscore(row, column, player) >= 50000 || winscore(row, column, player) >= 100000)
+                            {
+                                score = 2000000;
+                            }
+                            else
+                            {
+                                score = score - threatscore(row + 1, column, player) / 5 - winthreatscore(row + 1, column, player) / 5 + threatscore(row, column, player) * 2 + winscore(row, column, player) * 2 + losingfork(row, column, player) * 2 + winningfork(row, column, player) * 2;
+                            }                          
                         }
                         else
                         {
@@ -728,7 +735,7 @@ namespace Connect4
                             (dneThreat + dswThreat) > 2 ||
                             (dseThreat + dnwThreat) > 2)
             {
-                threatscore = +50000;
+                threatscore = threatscore + 55000;
             }
 
             return threatscore;
