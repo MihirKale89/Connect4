@@ -1,5 +1,5 @@
 # Connect4
-This is the Connect 4 game very with 3 options viz.
+This is the Connect 4 game with 3 options viz.
   1. Computer VS Computer
   2. Computer VS Human
   3. Human VS. Human
